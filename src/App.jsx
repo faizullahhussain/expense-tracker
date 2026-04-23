@@ -1,8 +1,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Header from "../src/components/layout/Header/Header";
-import Sidebar from "./components/layout/sidebar/Sidebar";
-import Dashboard from "./pages/Dashboard";
+import Header from "./components/layout/Header/Header";
+import Sidebar from "./components/layout/Sidebar/Sidebar";
 import AddTransaction from "./pages/AddTransaction";
 import TransactionsDetails from "./pages/TransactionsDetails";
 
