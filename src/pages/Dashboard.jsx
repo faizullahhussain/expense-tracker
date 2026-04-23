@@ -1,5 +1,5 @@
-import TransactionSummary from "../components/Transactions/TransactionSummary/TransactionSummary";
-import TransactionList from "../components/Transactions/TransactionList/TransactionList";
+import TransactionSummary from "../components/transactions/TransactionSummary/TransactionSummary";
+import TransactionList from "../components/transactions/TransactionList/TransactionList";
 
 export default function Dashboard({ transactions, handleDelete }) {
   const totalIncome = transactions
