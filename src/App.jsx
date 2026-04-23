@@ -4,6 +4,7 @@ import Header from "./components/layout/Header/Header";
 import Sidebar from "./components/layout/Sidebar/Sidebar";
 import AddTransaction from "./pages/AddTransaction";
 import TransactionsDetails from "./pages/TransactionsDetails";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const navigate = useNavigate();
