@@ -1,4 +1,4 @@
-import "../../layout/sidebar/Sidebar.scss";
+import "./Sidebar.scss";
 import { NavLink } from "react-router-dom";
 import {
   FaChartLine,
