@@ -11,7 +11,35 @@ function App() {
 
   const [transactions, setTransactions] = useState(() => {
     const saved = localStorage.getItem("transactions");
-    return saved ? JSON.parse(saved) : [];
+    const initialValue = saved ? JSON.parse(saved) : [];
+
+    if (initialValue.length === 0) {
+      return [
+        {
+          id: Date.now() + 1,
+          title: "Freelance Project",
+          type: "income",
+          amount: 2500,
+          date: "2026-04-15",
+        },
+        {
+          id: Date.now() + 2,
+          title: "Monthly Rent",
+          type: "expense",
+          amount: 1200,
+          date: "2026-04-01",
+        },
+        {
+          id: Date.now() + 3,
+          title: "Grocery Shopping",
+          type: "expense",
+          amount: 150,
+          date: "2026-04-18",
+        },
+      ];
+    }
+
+    return initialValue;
   });
 
   useEffect(() => {

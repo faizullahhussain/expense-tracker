@@ -36,28 +36,32 @@ export default function TransactionList({ transactions, handleDelete }) {
         </thead>
 
         <tbody>
-          {filteredTransactions.map(data => (
-            <tr key={data.id}>
-              <td>{data.title}</td>
-
-              <td>
-                <span className={`type-badge ${data.type}`}>{data.type}</span>
-              </td>
-
-              <td className={`amount ${data.type}`}>${data.amount}</td>
-
-              <td>{data.date}</td>
-
-              <td>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(data.id)}
-                >
-                  ✕
-                </button>
+          {filteredTransactions.length > 0 ? (
+            filteredTransactions.map(data => (
+              <tr key={data.id}>
+                <td>{data.title}</td>
+                <td>
+                  <span className={`type-badge ${data.type}`}>{data.type}</span>
+                </td>
+                <td className={`amount ${data.type}`}>${data.amount}</td>
+                <td>{data.date}</td>
+                <td>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(data.id)}
+                  >
+                    ✕
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" className="no-results">
+                No transactions found matching "{search}"
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
