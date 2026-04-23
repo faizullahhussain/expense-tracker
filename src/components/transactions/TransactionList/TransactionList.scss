@@ -1,0 +1,150 @@
+.expense-details {
+  border: 1px solid #309154;
+  max-width: 400px;
+  padding: 1rem;
+  margin-top: 1rem;
+  list-style: disc;
+  padding-left: 20px;
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: circle;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+  }
+  .delete-btn {
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.1rem;
+    border: none;
+    cursor: pointer;
+  }
+  .list-right span {
+    margin-right: 1.8rem;
+  }
+}
+
+// Table
+.table-wrapper {
+  margin-top: 20px;
+  background: #fefefe;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.164);
+  .search-box {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+
+    .input-search {
+      width: 100%;
+      padding: 10px 12px 10px 40px;
+      border-radius: 8px;
+      border: 2px solid #ebedf3;
+      outline: none;
+
+      background: #fefefe;
+      color: #000000;
+      margin-bottom: 0.4rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 40%;
+      left: 12px;
+      transform: translateY(-40%);
+      color: #94a3b8;
+      font-size: 14px;
+      pointer-events: none;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #000000;
+  text-align: center;
+
+  thead {
+    background: #ebebeb;
+
+    th {
+      text-align: center;
+      padding: 14px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #858586;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #334155;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.08);
+      }
+
+      td {
+        padding: 14px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* Amount Colors */
+.amount {
+  font-weight: 600;
+
+  &.income {
+    color: #22c55e;
+  }
+
+  &.expense {
+    color: #ef4444;
+  }
+}
+
+/* Type Badge */
+.type-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: capitalize;
+
+  &.income {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+  }
+
+  &.expense {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+  }
+}
+
+/* Delete Button */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s;
+
+  &:hover {
+    color: #f87171;
+    transform: scale(1.1);
+  }
+}
+
+.recent-transaction {
+  margin-top: 2rem;
+}
