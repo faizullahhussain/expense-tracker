@@ -11,6 +11,9 @@ export default function TransactionForm({
   setType,
   date,
   setDate,
+  categories,
+  selectedCategory,
+  setSelectedCategory,
 }) {
   return (
     <div>
@@ -75,6 +78,19 @@ export default function TransactionForm({
             </button>
           </div>
         </div>
+
+        <label htmlFor="category">Category</label>
+        <select
+          name="category"
+          id="category"
+          value={selectedCategory}
+          onChange={e => setSelectedCategory(e.target.value)}
+        >
+          {categories.map((option, index) => (
+            <option key={index}>{option}</option>
+          ))}
+        </select>
+
         <label htmlFor="date">Date</label>
         <input
           id="date"

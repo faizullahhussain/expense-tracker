@@ -28,6 +28,7 @@ export default function TransactionList({ transactions, handleDelete }) {
         <thead>
           <tr>
             <th>Title</th>
+            <th>Category</th>
             <th>Type</th>
             <th>Amount</th>
             <th>Date</th>
@@ -40,6 +41,7 @@ export default function TransactionList({ transactions, handleDelete }) {
             filteredTransactions.map(data => (
               <tr key={data.id}>
                 <td>{data.title}</td>
+                <td>{data.category}</td>
                 <td>
                   <span className={`type-badge ${data.type}`}>{data.type}</span>
                 </td>

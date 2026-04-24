@@ -7,6 +7,16 @@ export default function AddTransaction({ addTransaction }) {
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("income");
   const [date, setDate] = useState("");
+  const categories = [
+    "Food",
+    "Shopping",
+    "Bills",
+    "Entertaintment",
+    "Transport",
+    "Education",
+    "Others",
+  ];
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -18,6 +28,7 @@ export default function AddTransaction({ addTransaction }) {
       title,
       amount: Number(amount),
       type,
+      category: selectedCategory,
       date: date,
     };
 
@@ -43,6 +54,9 @@ export default function AddTransaction({ addTransaction }) {
           handleSubmit={handleSubmit}
           date={date}
           setDate={setDate}
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
         />
       </div>
     </section>
