@@ -36,5 +36,5 @@ _(Note: Replace this with the actual path to your screenshot after you upload it
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/expense-tracker.git](https://github.com/faizullahhussain/expense-tracker.git)
+   git clone https://github.com/faizullahhussain/expense-tracker.git
    ```
