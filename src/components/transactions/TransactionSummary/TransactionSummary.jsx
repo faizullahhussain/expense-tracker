@@ -30,7 +30,7 @@ const TransactionSummary = props => {
             <FaPlus />
           </div>
           <div className="card-content">
-            <p>Montyly Expense</p>
+            <p>Monthly Expense</p>
             <h2>${props.totalExpense.toFixed(2)}</h2>
           </div>
         </div>
