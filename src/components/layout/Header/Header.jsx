@@ -1,29 +1,38 @@
-import { FaUserCircle } from "react-icons/fa";
 import "../../layout/Header/Header.scss";
 import logo from "/src/assets/logo.png";
 import { useEffect, useState } from "react";
 
 export default function Header() {
-  const [dark, setDark] = useState(false);
-  let currentMonth = new Date().getFullYear();
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
+
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
-    document.body.className = dark ? "dark" : "light";
-  }, [dark]);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "dark" ? "light" : "dark"));
+  };
 
   return (
     <header className="header">
       <nav>
-        <a href="#" className="logo">
+        <div className="logo">
           <img src={logo} alt="Logo" />
-        </a>
-        <p className="current-month">
-          Current Year: <strong>{currentMonth}</strong>
+        </div>
+
+        <p className="current-year">
+          Current Year: <strong>{currentYear}</strong>
         </p>
+
         <div className="theme-toggle">
-          <a href="#" className="user">
-            <button onClick={() => setDark(!dark)}>{dark ? "☀️" : "🌙"}</button>
-          </a>
+          <button onClick={toggleTheme}>
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
         </div>
       </nav>
     </header>

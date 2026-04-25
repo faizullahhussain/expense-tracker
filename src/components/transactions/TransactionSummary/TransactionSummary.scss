@@ -7,25 +7,14 @@
   .card {
     padding: 1.6rem 2rem;
     border-radius: 12px;
-    background: #fefefe;
+    background: var(--bg-card);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.164);
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
   }
-  .card-blue {
-    background-color: #3788e3;
-    color: #fff;
-  }
-  .card-green {
-    background-color: #3ab974;
-    color: #fff;
-  }
-  .card-yellow {
-    background-color: #e87816;
-    color: #fff;
-  }
+
   .card-icon {
     width: 50px;
     height: 50px;

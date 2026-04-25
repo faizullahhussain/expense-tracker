@@ -1,11 +1,28 @@
-// Variables
-$bg-color: #fff;
-$color: #fff;
-
 @use "../src/components/transactions/TransactionSummary/TransactionSummary.scss";
 @use "../src/components/transactions/TransactionForm/TransactionForm.scss";
 @use "../src/components/transactions/TransactionList/TransactionList.scss";
 @use "../src/components/layout/Header/Header.scss";
+
+// Variables
+:root {
+  --bg-primary: #111827;
+  --bg-card: #1f2937;
+  --bg-sidebar: #1f2937;
+  --text-primary: #f3f4f6;
+  --text-muted: #a0a3af;
+  --border: #78808b;
+  --accent: #353962;
+}
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --text-primary: #111827;
+  --text-muted: #475569;
+  --border: #e5e7eb;
+  --accent: #6366f1;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -14,14 +31,9 @@ $color: #fff;
 body {
   margin: 0;
   font-family: "Epilogue", sans-serif;
-  &.light {
-    background-color: #fff;
-    color: #000;
-  }
-  &.dark {
-    background-color: #111827;
-    color: #fff;
-  }
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
 }
 
 .page-title {
@@ -36,14 +48,17 @@ body {
 // breadcrumb styling
 .breadcrumb {
   margin-bottom: 1rem;
+
   a {
     text-decoration: none;
     font-size: 1.1rem;
-    color: #000;
     font-weight: 500;
+    color: var(--text-primary);
   }
+
   svg {
     margin-inline: 0.4rem;
     font-size: 0.9rem;
+    color: var(--text-muted);
   }
 }
