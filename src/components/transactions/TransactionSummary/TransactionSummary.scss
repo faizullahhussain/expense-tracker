@@ -14,6 +14,18 @@
     justify-content: space-between;
     align-items: center;
   }
+  .card-blue {
+    background-color: #3788e3;
+    color: #fff;
+  }
+  .card-green {
+    background-color: #3ab974;
+    color: #fff;
+  }
+  .card-yellow {
+    background-color: #e87816;
+    color: #fff;
+  }
   .card-icon {
     width: 50px;
     height: 50px;
@@ -26,5 +38,8 @@
 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font-size: 16px;
+  }
+  .card-content p {
+    margin-bottom: 0.6rem;
   }
 }

@@ -58,10 +58,10 @@ function App() {
 
   return (
     <main>
-      <Header />
       <div className="layout">
         <Sidebar />
         <div className="content">
+          <Header />
           <Routes>
             <Route
               path="/"

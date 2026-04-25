@@ -3,8 +3,9 @@
   width: 100%;
   margin: auto;
   padding-block: 1rem;
-  padding-inline: 1rem;
   border-bottom: 1px solid #0000009a;
+  position: relative;
+  margin-bottom: 1.6rem;
 
   @media (max-width: 992px) {
     padding-inline: 15px;
@@ -24,28 +25,11 @@
         height: auto;
         margin-right: 0.6rem;
       }
-      span {
-        text-transform: uppercase;
-        font-size: 1.1rem;
-        font-weight: 800;
-      }
     }
     a {
       text-decoration: none;
       font-weight: bold;
       color: #232a41;
-    }
-  }
-  .user {
-    span {
-      font-size: 1rem;
-      text-transform: uppercase;
-      margin-right: 0.4rem;
-      vertical-align: middle;
-    }
-    svg {
-      font-size: 1.2rem;
-      vertical-align: middle;
     }
   }
 }

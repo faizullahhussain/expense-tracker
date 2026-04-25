@@ -1,4 +1,5 @@
 import "./Sidebar.scss";
+import logo from "/src/assets/logo.png";
 import { NavLink } from "react-router-dom";
 import {
   FaChartLine,
@@ -13,6 +14,10 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <nav className="sidebar-nav">
+        <a href="#" className="logo">
+          <img src={logo} alt="Logo" />
+          <span>Expense Tracker</span>
+        </a>
         <NavLink to="/" end>
           <FaHome />
           Dashboard
