@@ -41,7 +41,9 @@ export default function AddTransaction({ addTransaction }) {
 
   return (
     <section className="container">
-      <h1 className="page-title">Add Transaction</h1>
+      <div className="transaction-details">
+        <h1 className="page-title">Add Transaction</h1>
+      </div>
       <Breadcrumb />
       <div className="expenseForm">
         <TransactionForm

@@ -1,5 +1,18 @@
-import Breadcrumb from "../../Breadcrumb";
+import { useEffect, useRef } from "react";
+import flatpickr from "flatpickr";
+import "flatpickr/dist/themes/dark.css";
 import "../../transactions/TransactionForm/TransactionForm.scss";
+
+import {
+  FiFileText,
+  FiDollarSign,
+  FiTag,
+  FiCalendar,
+  FiPlus,
+} from "react-icons/fi";
+
+import { HiOutlineSwitchHorizontal } from "react-icons/hi";
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 export default function TransactionForm({
   handleSubmit,
@@ -15,92 +28,134 @@ export default function TransactionForm({
   selectedCategory,
   setSelectedCategory,
 }) {
+  const dateRef = useRef(null);
+
+  useEffect(() => {
+    if (dateRef.current) {
+      flatpickr(dateRef.current, {
+        dateFormat: "Y-m-d",
+        defaultDate: date || null,
+        onChange: (selectedDates, dateStr) => {
+          setDate(dateStr);
+        },
+      });
+    }
+  }, []);
+
   return (
     <div>
       <form className="add-transaction-form" onSubmit={handleSubmit}>
-        <h1 className="page-title-sm">Trasaction Details</h1>
-
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          className="input title-input"
-          type="text"
-          placeholder="Enter title(e.g. Grocery Shopping)"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        />
-
-        <label htmlFor="amount">Amount</label>
-        <div className="amount-input-fields">
-          <input type="button" className="amount-sign-btn" value="$" />
-          <input
-            id="amount"
-            className="input amount-input"
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={e => setAmount(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="type">Type</label>
-          <div style={{ display: "flex", gap: "10px", marginBottom: "24px" }}>
-            <button
-              type="button"
-              onClick={() => setType("income")}
-              style={{
-                padding: "10px 20px",
-                border: "none",
-                borderRadius: "5px",
-                backgroundColor: type === "income" ? "#d4edda" : "#f0f0f0",
-                color: type === "income" ? "#155724" : "#666",
-                cursor: "pointer",
-                fontWeight: type === "income" ? "bold" : "normal",
-              }}
-            >
-              Income
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setType("expense")}
-              style={{
-                padding: "10px 20px",
-                border: "none",
-                borderRadius: "5px",
-                backgroundColor: type === "expense" ? "#f8d7da" : "#f0f0f0",
-                color: type === "expense" ? "#721c24" : "#666",
-                cursor: "pointer",
-                fontWeight: type === "expense" ? "bold" : "normal",
-              }}
-            >
-              Expense
-            </button>
+        {/* HEADER */}
+        <div className="form-header">
+          <div className="header-icon">
+            <FiFileText />
+          </div>
+          <div>
+            <h1 className="form-title">Transaction Details</h1>
+            <p className="form-subtitle">
+              Add the details of your income or expense
+            </p>
           </div>
         </div>
 
-        <label htmlFor="category">Category</label>
-        <select
-          name="category"
-          id="category"
-          value={selectedCategory}
-          onChange={e => setSelectedCategory(e.target.value)}
-        >
-          {categories.map((option, index) => (
-            <option key={index}>{option}</option>
-          ))}
-        </select>
+        {/* TITLE */}
+        <div className="form-group">
+          <label className="label-with-icon">
+            <FiTag /> Title
+          </label>
+          <input
+            className="input"
+            type="text"
+            placeholder="Enter title (e.g. Grocery Shopping)"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
+        </div>
 
-        <label htmlFor="date">Date</label>
-        <input
-          id="date"
-          className="input"
-          type="date"
-          value={date}
-          onChange={e => setDate(e.target.value)}
-        />
+        {/* AMOUNT + TYPE (ROW) */}
+        <div className="amount-type-fields">
+          {/* AMOUNT */}
+          <div className="form-group">
+            <label className="label-with-icon">
+              <FiDollarSign /> Amount
+            </label>
 
-        <button className="add-amount-btn">Add Transaction</button>
+            <div className="amount-input-fields">
+              <input type="button" className="amount-sign-btn" value="$" />
+              <input
+                className="input amount-input"
+                type="number"
+                placeholder="Amount"
+                value={amount}
+                onChange={e => setAmount(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* TYPE */}
+          <div className="form-group">
+            <label className="label-with-icon">
+              <HiOutlineSwitchHorizontal /> Type
+            </label>
+
+            <div className="type-buttons">
+              <button
+                type="button"
+                onClick={() => setType("income")}
+                className={`type-btn ${
+                  type === "income" ? "active income" : ""
+                }`}
+              >
+                <AiOutlineArrowUp />
+                Income
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setType("expense")}
+                className={`type-btn ${
+                  type === "expense" ? "active expense" : ""
+                }`}
+              >
+                <AiOutlineArrowDown />
+                Expense
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* CATEGORY */}
+        <div className="form-group">
+          <label className="label-with-icon">
+            <FiTag /> Category
+          </label>
+
+          <select
+            value={selectedCategory}
+            onChange={e => setSelectedCategory(e.target.value)}
+          >
+            {categories.map((option, index) => (
+              <option key={index}>{option}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* DATE */}
+        <div className="form-group">
+          <label className="label-with-icon">
+            <FiCalendar /> Date
+          </label>
+
+          <div className="date-wrapper">
+            <input ref={dateRef} className="input" placeholder="Select date" />
+            <span className="calendar-icon">📅</span>
+          </div>
+        </div>
+
+        {/* SUBMIT */}
+        <button type="submit" className="add-amount-btn">
+          <FiPlus /> Add Transaction
+        </button>
       </form>
     </div>
   );

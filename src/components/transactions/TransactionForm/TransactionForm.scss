@@ -1,97 +1,226 @@
 .add-transaction-form {
+  background: var(--bg-card);
+  padding: 32px;
+  border-radius: 20px;
+  max-width: 800px;
+
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  background-color: var(--bg-card);
-  padding: 2rem;
-  border-radius: 12px;
 
-  label {
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-    margin-top: 1rem;
-    color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amount-type-fields {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .amount-type-fields {
+    grid-template-columns: 1fr;
   }
-  select {
-    appearance: none;
-    background-color: var(--bg-card);
+}
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.header-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+
+  svg {
     color: var(--text-primary);
-    width: 100%;
-    padding: 0.6rem;
-    outline: none;
-    font-size: 1.1rem;
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 16px;
-  }
-  .input {
-    width: 100%;
-    padding: 0.6rem;
-    background-color: transparent;
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    outline: none;
-    font-size: 1.1rem;
-    color: var(--text-primary);
-
-    &:focus {
-      border-color: var(--accent);
-    }
-  }
-
-  .amount-input-fields {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-primary);
-
-    .amount-sign-btn {
-      padding: 0.6rem;
-      font-size: 1rem;
-      margin-top: -14px;
-      border: 2px solid var(--border);
-      border-radius: 6px;
-      background: transparent;
-      color: var(--text-primary);
-      cursor: pointer;
-
-      &:hover {
-        border-color: var(--accent);
-      }
-    }
-  }
-
-  .add-amount-btn {
-    background-color: var(--accent);
-    width: 100%;
-    color: #fff;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    border: none;
-    display: block;
-    border-radius: 10px;
-
-    &:hover {
-      opacity: 0.9;
-    }
+    font-size: 26px;
   }
 }
 
-.expenseForm {
-  max-width: 800px;
-  padding: 1rem;
-  width: 100%;
+.form-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
 
-  h1 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
+.form-subtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: #e2e8f0;
+
+  outline: none;
+  transition: all 0.25s ease;
+
+  &::placeholder {
+    color: #64748b;
   }
+
+  &:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  }
+}
+
+.amount-input-fields {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.amount-sign-btn {
+  width: 50px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.type-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.type-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+
+  background: var(--bg-card);
+  color: #94a3b8;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.type-btn.active.income {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  border: 1px solid var(--border);
+
+  box-shadow: 0 8px 20px rgba(74, 222, 128, 0.2);
+}
+
+.type-btn.active.expense {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+  border: 1px solid var(--border);
+
+  box-shadow: 0 8px 20px rgba(248, 113, 113, 0.2);
+}
+
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+
+  margin-bottom: 20px;
+  outline: none;
+
+  &:focus {
+    border-color: #6366f1;
+  }
+}
+
+.date-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+
+  .calendar-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.6;
+  }
+}
+
+.add-amount-btn {
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+
+  background: var(--accent);
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.flatpickr-calendar {
+  border-radius: 16px !important;
+  background: #1e293b !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.flatpickr-day.selected {
+  background: #4ade80 !important;
+  border-radius: 8px;
+}
+
+.flatpickr-day:hover {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.flatpickr-months {
+  color: #fff;
+}
+
+.flatpickr-current-month input {
+  color: #fff;
 }

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "flatpickr": "^4.6.13",
     "nanoid": "^5.1.7",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
