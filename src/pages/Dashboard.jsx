@@ -1,13 +1,13 @@
 import TransactionSummary from "../components/transactions/TransactionSummary/TransactionSummary";
 import TransactionList from "../components/transactions/TransactionList/TransactionList";
 
-export default function Dashboard({ transactions, handleDelete }) {
+export default function Dashboard({ transactions, handleDelete, handleEdit }) {
   const totalIncome = transactions
-    .filter(t => t.type === "income")
+    .filter((t) => t.type === "income")
     .reduce((sum, t) => sum + t.amount, 0);
 
   const totalExpense = transactions
-    .filter(t => t.type === "expense")
+    .filter((t) => t.type === "expense")
     .reduce((sum, t) => sum + t.amount, 0);
 
   const balance = totalIncome - totalExpense;
@@ -25,6 +25,7 @@ export default function Dashboard({ transactions, handleDelete }) {
         <TransactionList
           transactions={transactions}
           handleDelete={handleDelete}
+          handleEdit={handleEdit}
         />
       </div>
     </section>

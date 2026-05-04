@@ -111,13 +111,122 @@ table {
   cursor: pointer;
   font-size: 16px;
   transition: 0.2s;
+  margin-left: 0.8rem;
 
   &:hover {
     color: #f87171;
-    transform: scale(1.1);
+    transform: scale(1.2);
+  }
+}
+
+.edit-task-btn {
+  cursor: pointer;
+  transition: transform 0.5s ease;
+
+  &:hover {
+    transform: scale(1.2);
   }
 }
 
 .recent-transaction {
   margin-top: 2rem;
+}
+
+/* Edit Input Field */
+.edit-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: #3b82f6;
+  }
+}
+
+/* Type Toggle Buttons (Income/Expense) */
+.type-toggle {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  background-color: rgba(128, 128, 128, 0.1);
+  color: var(--text-primary);
+  transition: all 0.2s;
+  font-weight: 500;
+
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+  }
+
+  &.active-income {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    font-weight: 600;
+  }
+
+  &.active-expense {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    font-weight: 600;
+  }
+}
+
+/* Save Button */
+.save-btn {
+  padding: 6px 14px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #16a34a;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Cancel Button */
+.cancel-btn {
+  padding: 6px 14px;
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #4b5563;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px 20px !important;
+  color: var(--text-secondary);
+  font-style: italic;
 }

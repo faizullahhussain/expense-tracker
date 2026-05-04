@@ -84,12 +84,13 @@ label {
   transition: all 0.25s ease;
 
   &::placeholder {
-    color: #64748b;
+    color: var(--text-primary);
   }
 
   &:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    color: var(--text-primary);
   }
 }
 
@@ -175,6 +176,9 @@ select {
     transform: translateY(-50%);
     opacity: 0.6;
   }
+  input {
+    color: var(--text-primary);
+  }
 }
 
 .add-amount-btn {
@@ -211,6 +215,7 @@ select {
 .flatpickr-day.selected {
   background: #4ade80 !important;
   border-radius: 8px;
+  color: var(--text-primary);
 }
 
 .flatpickr-day:hover {

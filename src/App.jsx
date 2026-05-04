@@ -46,14 +46,23 @@ function App() {
   }, [transactions]);
 
   // add a new transaction
-  const addTransaction = newTransaction => {
-    setTransactions(prev => [...prev, newTransaction]);
+  const addTransaction = (newTransaction) => {
+    setTransactions((prev) => [...prev, newTransaction]);
     navigate("/TransactionsDetails");
   };
 
   // delete a transaction
-  const handleDelete = id => {
-    setTransactions(transactions.filter(t => t.id !== id));
+  const handleDelete = (id) => {
+    setTransactions(transactions.filter((t) => t.id !== id));
+  };
+
+  // edit transaction
+  const handleEdit = (id, updatedTransaction) => {
+    setTransactions(
+      transactions.map((t) =>
+        t.id === id ? { ...t, ...updatedTransaction } : t,
+      ),
+    );
   };
 
   return (
@@ -69,6 +78,7 @@ function App() {
                 <Dashboard
                   transactions={transactions}
                   handleDelete={handleDelete}
+                  handleEdit={handleEdit}
                 />
               }
             />
@@ -82,6 +92,7 @@ function App() {
                 <TransactionsDetails
                   transactions={transactions}
                   handleDelete={handleDelete}
+                  handleEdit={handleEdit}
                 />
               }
             />
