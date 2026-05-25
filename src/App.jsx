@@ -5,6 +5,8 @@ import Sidebar from "./components/layout/Sidebar/Sidebar";
 import AddTransaction from "./pages/AddTransaction";
 import TransactionsDetails from "./pages/TransactionsDetails";
 import Dashboard from "./pages/Dashboard";
+import Analytics from "./pages/Analytics";
+import Settings from "./pages/Settings";
 
 function App() {
   const defaultTransactions = [
@@ -76,6 +78,26 @@ function App() {
               path="/"
               element={
                 <Dashboard
+                  transactions={transactions}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                />
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <Analytics
+                  transactions={transactions}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                />
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <Settings
                   transactions={transactions}
                   handleDelete={handleDelete}
                   handleEdit={handleEdit}

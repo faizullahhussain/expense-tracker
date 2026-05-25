@@ -1,0 +1,31 @@
+.charts {
+  margin-top: 18px;
+
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .chart-card {
+    background: var(--bg-card);
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
+  }
+
+  .chart-title {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+}
+
+.chart-placeholder {
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  text-align: center;
+}

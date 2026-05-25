@@ -1,9 +1,10 @@
 import TransactionSummary from "../components/transactions/TransactionSummary/TransactionSummary";
 import TransactionList from "../components/transactions/TransactionList/TransactionList";
+import Breadcrumb from "../components/Breadcrumb";
 import Charts from "../components/analytics/Charts";
 import "./Analytics.scss";
 
-export default function Dashboard({ transactions, handleDelete, handleEdit }) {
+export default function Analytics({ transactions, handleDelete, handleEdit }) {
   const totalIncome = transactions
     .filter((t) => t.type === "income")
     .reduce((sum, t) => sum + t.amount, 0);
@@ -16,18 +17,22 @@ export default function Dashboard({ transactions, handleDelete, handleEdit }) {
 
   return (
     <section className="container">
-      <h1 className="page-title">Dashboard Overview</h1>
+      <h1 className="page-title">Analytics</h1>
+      <Breadcrumb />
+
       <TransactionSummary
         balance={balance}
         totalIncome={totalIncome}
         totalExpense={totalExpense}
       />
+
       <div className="charts">
-        <h2 className="page-title-sm">Quick Charts</h2>
+        <h2 className="page-title-sm">Charts</h2>
         <Charts transactions={transactions} />
       </div>
+
       <div className="recent-transaction">
-        <h1 className="page-title-sm">Recent Transactions</h1>
+        <h2 className="page-title-sm">Recent Transactions</h2>
         <TransactionList
           transactions={transactions}
           handleDelete={handleDelete}

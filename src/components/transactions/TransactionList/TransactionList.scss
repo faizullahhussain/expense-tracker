@@ -230,3 +230,79 @@ table {
   color: var(--text-secondary);
   font-style: italic;
 }
+
+/* Modal styles for edit popup */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  width: 520px;
+  max-width: calc(100% - 48px);
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.35);
+  transform: translateY(8px) scale(0.98);
+  animation: popIn 220ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+}
+
+.modal-title {
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+  font-size: 18px;
+}
+
+.modal-body {
+  margin-top: 8px;
+}
+
+.modal .form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.modal .form-group {
+  margin-bottom: 12px;
+}
+
+.modal .form-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.modal .input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-body);
+  color: var(--text-primary);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@keyframes popIn {
+  from {
+    transform: translateY(18px) scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

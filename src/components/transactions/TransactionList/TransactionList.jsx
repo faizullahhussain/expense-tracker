@@ -88,128 +88,40 @@ export default function TransactionList({
             filteredTransactions.map((data) => (
               <tr key={data.id}>
                 {/* Title */}
-                <td>
-                  {editId === data.id ? (
-                    <input
-                      type="text"
-                      value={editData.title}
-                      onChange={(e) =>
-                        setEditData({ ...editData, title: e.target.value })
-                      }
-                      className="edit-input"
-                    />
-                  ) : (
-                    data.title
-                  )}
-                </td>
+                <td>{data.title}</td>
 
                 {/* Category */}
-                <td>
-                  {editId === data.id ? (
-                    <input
-                      type="text"
-                      value={editData.category}
-                      onChange={(e) =>
-                        setEditData({ ...editData, category: e.target.value })
-                      }
-                      className="edit-input"
-                    />
-                  ) : (
-                    data.category
-                  )}
-                </td>
+                <td>{data.category}</td>
 
                 {/* Type */}
                 <td>
-                  {editId === data.id ? (
-                    <div style={{ display: "flex", gap: "8px" }}>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setEditData({ ...editData, type: "income" })
-                        }
-                        className={`type-toggle ${editData.type === "income" ? "active-income" : ""}`}
-                      >
-                        Income
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setEditData({ ...editData, type: "expense" })
-                        }
-                        className={`type-toggle ${editData.type === "expense" ? "active-expense" : ""}`}
-                      >
-                        Expense
-                      </button>
-                    </div>
-                  ) : (
-                    <span className={`type-badge ${data.type}`}>
-                      {data.type}
-                    </span>
-                  )}
+                  <span className={`type-badge ${data.type}`}>{data.type}</span>
                 </td>
 
                 {/* Amount */}
-                <td className={`amount ${data.type}`}>
-                  {editId === data.id ? (
-                    <input
-                      type="number"
-                      value={editData.amount}
-                      onChange={(e) =>
-                        setEditData({ ...editData, amount: e.target.value })
-                      }
-                      className="edit-input"
-                    />
-                  ) : (
-                    `$${data.amount}`
-                  )}
-                </td>
+                <td className={`amount ${data.type}`}>${data.amount}</td>
 
                 {/* Date */}
-                <td>
-                  {editId === data.id ? (
-                    <input
-                      type="date"
-                      value={editData.date}
-                      onChange={(e) =>
-                        setEditData({ ...editData, date: e.target.value })
-                      }
-                      className="edit-input"
-                    />
-                  ) : (
-                    data.date
-                  )}
-                </td>
+                <td>{data.date}</td>
 
                 {/* Action */}
                 <td>
-                  {editId === data.id ? (
-                    <div style={{ display: "flex", gap: "8px" }}>
-                      <button
-                        className="save-btn"
-                        onClick={() => handleEditSave(data.id)}
-                      >
-                        Save
-                      </button>
-                      <button className="cancel-btn" onClick={handleEditCancel}>
-                        Cancel
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <FaEdit
-                        onClick={() => handleEditStart(data)}
-                        className="edit-task-btn"
-                      />
+                  <>
+                    <FaEdit
+                      onClick={(e) => {
+                        // start editing
+                        handleEditStart(data);
+                      }}
+                      className="edit-task-btn"
+                    />
 
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDelete(data.id)}
-                      >
-                        ✕
-                      </button>
-                    </>
-                  )}
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(data.id)}
+                    >
+                      ✕
+                    </button>
+                  </>
                 </td>
               </tr>
             ))
@@ -222,6 +134,103 @@ export default function TransactionList({
           )}
         </tbody>
       </table>
+
+      {/* Edit Modal */}
+      {editId !== null && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2 className="modal-title">Edit Transaction</h2>
+
+            <div className="modal-body">
+              <div className="form-group">
+                <label>Title</label>
+                <input
+                  className="input edit-input"
+                  type="text"
+                  value={editData.title}
+                  onChange={(e) =>
+                    setEditData({ ...editData, title: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Amount</label>
+                  <input
+                    className="input edit-input"
+                    type="number"
+                    value={editData.amount}
+                    onChange={(e) =>
+                      setEditData({ ...editData, amount: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Type</label>
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    <button
+                      type="button"
+                      className={`type-toggle ${editData.type === "income" ? "active-income" : ""}`}
+                      onClick={() =>
+                        setEditData({ ...editData, type: "income" })
+                      }
+                    >
+                      Income
+                    </button>
+                    <button
+                      type="button"
+                      className={`type-toggle ${editData.type === "expense" ? "active-expense" : ""}`}
+                      onClick={() =>
+                        setEditData({ ...editData, type: "expense" })
+                      }
+                    >
+                      Expense
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Category</label>
+                <input
+                  className="input edit-input"
+                  type="text"
+                  value={editData.category}
+                  onChange={(e) =>
+                    setEditData({ ...editData, category: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Date</label>
+                <input
+                  className="input edit-input"
+                  type="date"
+                  value={editData.date}
+                  onChange={(e) =>
+                    setEditData({ ...editData, date: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button
+                className="save-btn"
+                onClick={() => handleEditSave(editId)}
+              >
+                Save changes
+              </button>
+              <button className="cancel-btn" onClick={handleEditCancel}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
