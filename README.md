@@ -2,8 +2,9 @@
 
 A professional, responsive financial management application built with **React**, **React Router**, and **Sass**. This project features a clean UI/UX design and uses local storage for data persistence.
 
-![Dashboard Preview](./public/expense-tracker-dashboard.png)
-_(Note: Replace this with the actual path to your screenshot after you upload it to GitHub)_
+👉 **[Live Demo Deployment](https://faizullahhussain.github.io/expense-tracker)**
+
+<img width="1893" height="855" alt="Expense Tracker Dashboard Preview" src="https://github.com/user-attachments/assets/56245704-d751-4eca-b8a4-4b6ad2f37d85" />
 
 ## 🚀 Features
 
@@ -36,5 +37,4 @@ _(Note: Replace this with the actual path to your screenshot after you upload it
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/faizullahhussain/expense-tracker.git
-   ```
+   git clone [https://github.com/faizullahhussain/expense-tracker.git](https://github.com/faizullahhussain/expense-tracker.git)
