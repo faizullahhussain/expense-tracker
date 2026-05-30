@@ -3,6 +3,11 @@
   grid-template-columns: 1fr 360px;
   gap: 16px;
   align-items: start;
+
+  /* 📱 Collapse setting configurations into 1 column layout */
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .settings-card {
@@ -10,30 +15,35 @@
   padding: 16px;
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(2, 6, 23, 0.04);
-}
 
-.settings-card .form-group {
-  margin-bottom: 12px;
-}
+  .form-group {
+    margin-bottom: 12px;
+  }
 
-.settings-card label {
-  display: block;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-}
+  label {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
 
-.settings-card select {
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg-body);
-  color: var(--text-primary);
+  select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-body);
+    color: var(--text-primary);
+  }
 }
 
 /* Profile styles */
 .profile-grid {
   grid-template-columns: 1fr 420px;
+
+  /* 📱 Break down profile details wrapper */
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .profile-card {
@@ -47,6 +57,13 @@
   display: flex;
   gap: 16px;
   align-items: center;
+
+  /* 📱 Stack avatar above meta items on narrow screens */
+  @media (max-width: 480px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
 }
 
 .avatar-wrap {
@@ -76,9 +93,16 @@
   font-size: 24px;
 }
 
-.profile-meta .input {
-  display: block;
-  margin-bottom: 8px;
+.profile-meta {
+  /* 📱 Ensure meta matches full width when centered */
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+
+  .input {
+    display: block;
+    margin-bottom: 8px;
+  }
 }
 
 .input {
@@ -94,6 +118,16 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 12px;
+
+  /* 📱 Make saving buttons full-width for easy thumb tapping */
+  @media (max-width: 480px) {
+    justify-content: center;
+
+    .save-btn {
+      width: 100%;
+      padding-block: 10px;
+    }
+  }
 }
 
 .save-btn {
@@ -103,8 +137,11 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-}
+  transition:
+    background 0.2s ease,
+    filter 0.2s ease;
 
-.save-btn:hover {
-  filter: brightness(0.95);
+  &:hover {
+    filter: brightness(0.95);
+  }
 }

@@ -11,11 +11,18 @@
     padding-inline: 15px;
   }
 
+  // Slight height adjustment adjustments for smaller viewports
+  @media (max-width: 768px) {
+    padding-block: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
   nav {
     margin-right: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .logo {
       img {
         width: 100%;
@@ -25,16 +32,86 @@
         margin-right: 0.6rem;
       }
     }
+
     a {
       text-decoration: none;
       font-weight: bold;
       color: #232a41;
     }
   }
+
   .theme-toggle button {
     background-color: transparent;
     border: none;
     font-size: 1.1rem;
     cursor: pointer;
+  }
+}
+
+// 📦 DEFAULT STATE: Hide the mobile navigation bar on desktop viewports
+.mobile-bottom-nav {
+  display: none;
+}
+
+/* ==========================================================================
+   📱 MOBILE LAYOUT BREAKPOINT (768px and down)
+   ========================================================================== */
+@media (max-width: 768px) {
+  // Hide desktop-only text strings seamlessly
+  .desktop-only {
+    display: none !important;
+  }
+
+  // Activate and layout the fixed mobile bottom bar container
+  .mobile-bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    // Core structural positioning rules
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    z-index: 999;
+
+    // Aesthetic alignments based on your setup variables
+    background-color: var(
+      --bg-card,
+      #0b0f17
+    ); // Fallback to premium dark mode if variable isn't active
+    border-top: 1px solid var(--border);
+    padding-bottom: env(
+      safe-area-inset-bottom
+    ); // Safeguard for mobile safe space zones
+  }
+
+  // Individual routed navigation button configurations
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+
+    // Layout and base typography resets
+    color: var(--text-muted, #8a99ad);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    gap: 4px;
+    transition: color 0.2s ease-in-out;
+
+    // React Router automatically assigns this class name when URL matches
+    &.active {
+      color: var(--color-accent, #c0ff00); // Highlight accent neon
+
+      svg,
+      i {
+        color: var(--color-accent, #c0ff00);
+      }
+    }
   }
 }
