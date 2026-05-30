@@ -4,7 +4,6 @@
   gap: 16px;
   align-items: start;
 
-  /* 📱 Collapse setting configurations into 1 column layout */
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -40,7 +39,6 @@
 .profile-grid {
   grid-template-columns: 1fr 420px;
 
-  /* 📱 Break down profile details wrapper */
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -58,7 +56,6 @@
   gap: 16px;
   align-items: center;
 
-  /* 📱 Stack avatar above meta items on narrow screens */
   @media (max-width: 480px) {
     flex-direction: column;
     text-align: center;
@@ -94,7 +91,6 @@
 }
 
 .profile-meta {
-  /* 📱 Ensure meta matches full width when centered */
   @media (max-width: 480px) {
     width: 100%;
   }
@@ -119,7 +115,6 @@
   justify-content: flex-end;
   margin-top: 12px;
 
-  /* 📱 Make saving buttons full-width for easy thumb tapping */
   @media (max-width: 480px) {
     justify-content: center;
 

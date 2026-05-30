@@ -1,10 +1,8 @@
 import "../../layout/Header/Header.scss";
 import logo from "/src/assets/logo.png";
 import { useEffect, useState } from "react";
-// 1. Import NavLink from react-router-dom
 import { NavLink } from "react-router-dom";
-// Swapped LuBarChart2 for LuPieChart (or LuTrendingUp)
-// Swapping to ultra-stable icon sets that exist in all versions
+
 import {
   FaHouse,
   FaPlus,
@@ -50,7 +48,7 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* ─── BOTTOM NAVIGATION (Now with React Router Links) ─── */}
+      {/* ─── BOTTOM NAVIGATION ─── */}
 
       <nav className="mobile-bottom-nav">
         <NavLink to="/" className="nav-item" end>

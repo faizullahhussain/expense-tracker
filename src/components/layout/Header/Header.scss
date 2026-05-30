@@ -11,7 +11,6 @@
     padding-inline: 15px;
   }
 
-  // Slight height adjustment adjustments for smaller viewports
   @media (max-width: 768px) {
     padding-block: 0.6rem;
     margin-bottom: 1rem;
@@ -48,27 +47,22 @@
   }
 }
 
-// 📦 DEFAULT STATE: Hide the mobile navigation bar on desktop viewports
 .mobile-bottom-nav {
   display: none;
 }
 
-/* ==========================================================================
-   📱 MOBILE LAYOUT BREAKPOINT (768px and down)
-   ========================================================================== */
+// MOBILE LAYOUT BREAKPOINT (768px and down)
+
 @media (max-width: 768px) {
-  // Hide desktop-only text strings seamlessly
   .desktop-only {
     display: none !important;
   }
 
-  // Activate and layout the fixed mobile bottom bar container
   .mobile-bottom-nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
 
-    // Core structural positioning rules
     position: fixed;
     bottom: 0;
     left: 0;
@@ -76,18 +70,11 @@
     height: 65px;
     z-index: 999;
 
-    // Aesthetic alignments based on your setup variables
-    background-color: var(
-      --bg-card,
-      #0b0f17
-    ); // Fallback to premium dark mode if variable isn't active
+    background-color: var(--bg-card, #0b0f17);
     border-top: 1px solid var(--border);
-    padding-bottom: env(
-      safe-area-inset-bottom
-    ); // Safeguard for mobile safe space zones
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
-  // Individual routed navigation button configurations
   .nav-item {
     display: flex;
     flex-direction: column;
@@ -96,7 +83,6 @@
     flex: 1;
     height: 100%;
 
-    // Layout and base typography resets
     color: var(--text-muted, #8a99ad);
     text-decoration: none;
     font-size: 0.72rem;
@@ -104,9 +90,8 @@
     gap: 4px;
     transition: color 0.2s ease-in-out;
 
-    // React Router automatically assigns this class name when URL matches
     &.active {
-      color: var(--color-accent, #c0ff00); // Highlight accent neon
+      color: var(--color-accent, #c0ff00);
 
       svg,
       i {
