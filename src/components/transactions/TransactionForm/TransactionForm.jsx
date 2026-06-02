@@ -13,6 +13,7 @@ import {
 
 import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
+import TagInput from "../../common/TagInput/TagInput";
 
 export default function TransactionForm({
   handleSubmit,
@@ -27,6 +28,14 @@ export default function TransactionForm({
   categories,
   selectedCategory,
   setSelectedCategory,
+  tags = [],
+  setTags = () => {},
+  isRecurring = false,
+  setIsRecurring = () => {},
+  recurringFrequency = "monthly",
+  setRecurringFrequency = () => {},
+  recurringEndDate = "",
+  setRecurringEndDate = () => {},
 }) {
   const dateRef = useRef(null);
 
@@ -68,7 +77,7 @@ export default function TransactionForm({
             type="text"
             placeholder="Enter title (e.g. Grocery Shopping)"
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 
@@ -87,7 +96,7 @@ export default function TransactionForm({
                 type="number"
                 placeholder="Amount"
                 value={amount}
-                onChange={e => setAmount(e.target.value)}
+                onChange={(e) => setAmount(e.target.value)}
               />
             </div>
           </div>
@@ -132,13 +141,16 @@ export default function TransactionForm({
 
           <select
             value={selectedCategory}
-            onChange={e => setSelectedCategory(e.target.value)}
+            onChange={(e) => setSelectedCategory(e.target.value)}
           >
             {categories.map((option, index) => (
               <option key={index}>{option}</option>
             ))}
           </select>
         </div>
+
+        {/* TAGS */}
+        <TagInput tags={tags} setTags={setTags} />
 
         {/* DATE */}
         <div className="form-group">
@@ -151,6 +163,48 @@ export default function TransactionForm({
             <span className="calendar-icon">📅</span>
           </div>
         </div>
+
+        {/* RECURRING */}
+        <div className="form-group">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={isRecurring}
+              onChange={(e) => setIsRecurring(e.target.checked)}
+            />
+            Make this a recurring transaction
+          </label>
+        </div>
+
+        {isRecurring && (
+          <div className="recurring-fields">
+            <div className="form-group">
+              <label className="label-with-icon">
+                <FiTag /> Frequency
+              </label>
+              <select
+                value={recurringFrequency}
+                onChange={(e) => setRecurringFrequency(e.target.value)}
+              >
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label className="label-with-icon">
+                <FiCalendar /> End Date (Optional)
+              </label>
+              <input
+                type="date"
+                value={recurringEndDate}
+                onChange={(e) => setRecurringEndDate(e.target.value)}
+                className="input"
+              />
+            </div>
+          </div>
+        )}
 
         {/* SUBMIT */}
         <button type="submit" className="add-amount-btn">

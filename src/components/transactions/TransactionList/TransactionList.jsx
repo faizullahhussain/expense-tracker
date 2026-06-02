@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../../transactions/TransactionList/TransactionList.scss";
 import { BsFileExcel } from "react-icons/bs";
 import { FaEdit, FaSearch } from "react-icons/fa";
+import FilterPanel from "../../common/FilterPanel/FilterPanel";
 
 export default function TransactionList({
   transactions,
@@ -10,19 +11,64 @@ export default function TransactionList({
 }) {
   const [search, setSearch] = useState("");
   const [editId, setEditId] = useState(null);
+  const [filters, setFilters] = useState({
+    dateFrom: "",
+    dateTo: "",
+    type: "all",
+    selectedCategories: [],
+    tags: [],
+    minAmount: "",
+    maxAmount: "",
+  });
   const [editData, setEditData] = useState({
     title: "",
     amount: "",
     type: "",
     date: "",
     category: "",
+    tags: [],
   });
 
-  const filteredTransactions = transactions.filter(
-    (item) =>
-      item.title.toLowerCase().includes(search.toLowerCase()) ||
-      item.type.toLowerCase().includes(search.toLowerCase()),
-  );
+  const categories = [...new Set(transactions.map((t) => t.category))];
+
+  const filteredTransactions = transactions.filter((item) => {
+    // Search filter
+    if (
+      !item.title.toLowerCase().includes(search.toLowerCase()) &&
+      !item.type.toLowerCase().includes(search.toLowerCase())
+    ) {
+      return false;
+    }
+
+    // Date range filter
+    if (filters.dateFrom && item.date < filters.dateFrom) return false;
+    if (filters.dateTo && item.date > filters.dateTo) return false;
+
+    // Type filter
+    if (filters.type !== "all" && item.type !== filters.type) return false;
+
+    // Amount range filter
+    if (filters.minAmount && item.amount < Number(filters.minAmount))
+      return false;
+    if (filters.maxAmount && item.amount > Number(filters.maxAmount))
+      return false;
+
+    // Category filter
+    if (
+      filters.selectedCategories.length > 0 &&
+      !filters.selectedCategories.includes(item.category)
+    ) {
+      return false;
+    }
+
+    // Tags filter
+    if (filters.tags.length > 0) {
+      const itemTags = item.tags || [];
+      if (!filters.tags.some((tag) => itemTags.includes(tag))) return false;
+    }
+
+    return true;
+  });
 
   // Start editing
   const handleEditStart = (transaction) => {
@@ -33,6 +79,7 @@ export default function TransactionList({
       type: transaction.type,
       date: transaction.date,
       category: transaction.category,
+      tags: transaction.tags || [],
     });
   };
 
@@ -46,20 +93,41 @@ export default function TransactionList({
       type: editData.type,
       date: editData.date,
       category: editData.category,
+      tags: editData.tags || [],
     });
 
     setEditId(null);
-    setEditData({ title: "", amount: "", type: "", date: "", category: "" });
+    setEditData({
+      title: "",
+      amount: "",
+      type: "",
+      date: "",
+      category: "",
+      tags: [],
+    });
   };
 
   // Cancel editing
   const handleEditCancel = () => {
     setEditId(null);
-    setEditData({ title: "", amount: "", type: "", date: "", category: "" });
+    setEditData({
+      title: "",
+      amount: "",
+      type: "",
+      date: "",
+      category: "",
+      tags: [],
+    });
   };
 
   return (
     <div className="table-wrapper">
+      <FilterPanel
+        transactions={transactions}
+        onFilterChange={setFilters}
+        categories={categories}
+      />
+
       <div className="search-box">
         <FaSearch className="search-icon" />
 
@@ -76,6 +144,7 @@ export default function TransactionList({
           <tr>
             <th>Title</th>
             <th>Category</th>
+            <th>Tags</th>
             <th>Type</th>
             <th>Amount</th>
             <th>Date</th>
@@ -92,6 +161,21 @@ export default function TransactionList({
 
                 {/* Category */}
                 <td>{data.category}</td>
+
+                {/* Tags */}
+                <td>
+                  <div className="tags-cell">
+                    {data.tags && data.tags.length > 0 ? (
+                      data.tags.map((tag) => (
+                        <span key={tag} className="tag-badge">
+                          {tag}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="no-tags">—</span>
+                    )}
+                  </div>
+                </td>
 
                 {/* Type */}
                 <td>
@@ -127,7 +211,7 @@ export default function TransactionList({
             ))
           ) : (
             <tr>
-              <td colSpan="6" className="no-results">
+              <td colSpan="7" className="no-results">
                 No transactions found matching "{search}"
               </td>
             </tr>
@@ -213,6 +297,25 @@ export default function TransactionList({
                   onChange={(e) =>
                     setEditData({ ...editData, date: e.target.value })
                   }
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Tags (comma-separated)</label>
+                <input
+                  className="input edit-input"
+                  type="text"
+                  value={editData.tags.join(", ")}
+                  onChange={(e) =>
+                    setEditData({
+                      ...editData,
+                      tags: e.target.value
+                        .split(",")
+                        .map((t) => t.trim())
+                        .filter((t) => t),
+                    })
+                  }
+                  placeholder="e.g. work, important"
                 />
               </div>
             </div>

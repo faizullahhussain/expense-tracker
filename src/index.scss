@@ -1,26 +1,49 @@
 @use "../src/components/transactions/TransactionSummary/TransactionSummary.scss";
 @use "../src/components/transactions/TransactionForm/TransactionForm.scss";
 @use "../src/components/transactions/TransactionList/TransactionList.scss";
+@use "../src/components/common/ExportModal/ExportModal.scss";
+@use "../src/components/common/FilterPanel/FilterPanel.scss";
+@use "../src/components/common/TagInput/TagInput.scss";
 @use "../src/components/layout/Header/Header.scss";
 
-// Variables
+// Variables - Dark Theme (Default)
 :root {
   --bg-primary: #111827;
   --bg-card: #1f2937;
   --bg-sidebar: #1f2937;
   --text-primary: #f3f4f6;
   --text-muted: #a0a3af;
+  --text-secondary: #d1d5db;
   --border: #78808b;
+  --border-color: #444;
   --accent: #353962;
+  --primary-color: #6366f1;
+  --primary-color-alpha: rgba(99, 102, 241, 0.1);
+  --card-bg: #1f2937;
+  --input-bg: #111827;
+  --input-border: #374151;
+  --tag-bg: #6366f1;
+  --tag-text: #ffffff;
 }
+
+// Light Theme
 [data-theme="light"] {
   --bg-primary: #ffffff;
-  --bg-card: #ffffff;
-  --bg-sidebar: #ffffff;
+  --bg-card: #f9fafb;
+  --bg-sidebar: #f3f4f6;
   --text-primary: #111827;
-  --text-muted: #475569;
+  --text-muted: #6b7280;
+  --text-secondary: #4b5563;
   --border: #e5e7eb;
+  --border-color: #d1d5db;
   --accent: #6366f1;
+  --primary-color: #6366f1;
+  --primary-color-alpha: rgba(99, 102, 241, 0.1);
+  --card-bg: #f9fafb;
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
+  --tag-bg: #818cf8;
+  --tag-text: #ffffff;
 }
 
 * {

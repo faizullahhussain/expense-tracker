@@ -381,3 +381,26 @@ table {
     opacity: 1;
   }
 }
+
+/* Tags Cell */
+.tags-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  .tag-badge {
+    display: inline-flex;
+    padding: 4px 8px;
+    background: #6366f1;
+    color: white;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: lowercase;
+  }
+
+  .no-tags {
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+}

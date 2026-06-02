@@ -17,8 +17,12 @@ export default function AddTransaction({ addTransaction }) {
     "Others",
   ];
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [tags, setTags] = useState([]);
+  const [isRecurring, setIsRecurring] = useState(false);
+  const [recurringFrequency, setRecurringFrequency] = useState("monthly");
+  const [recurringEndDate, setRecurringEndDate] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!title || !amount) return;
@@ -30,6 +34,10 @@ export default function AddTransaction({ addTransaction }) {
       type,
       category: selectedCategory,
       date: date,
+      tags: tags,
+      isRecurring: isRecurring,
+      recurringFrequency: isRecurring ? recurringFrequency : null,
+      recurringEndDate: isRecurring ? recurringEndDate : null,
     };
 
     addTransaction(newTransaction);
@@ -37,6 +45,10 @@ export default function AddTransaction({ addTransaction }) {
     setTitle("");
     setAmount("");
     setType("income");
+    setTags([]);
+    setIsRecurring(false);
+    setRecurringFrequency("monthly");
+    setRecurringEndDate("");
   };
 
   return (
@@ -59,6 +71,14 @@ export default function AddTransaction({ addTransaction }) {
           categories={categories}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          tags={tags}
+          setTags={setTags}
+          isRecurring={isRecurring}
+          setIsRecurring={setIsRecurring}
+          recurringFrequency={recurringFrequency}
+          setRecurringFrequency={setRecurringFrequency}
+          recurringEndDate={recurringEndDate}
+          setRecurringEndDate={setRecurringEndDate}
         />
       </div>
     </section>
